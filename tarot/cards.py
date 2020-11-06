@@ -67,7 +67,3 @@ class Carte():
         return f"{height_to_string(self.height)} de {color_to_string(self.suit)}"
 
 card_list = sorted([Carte(h, s) for h in cartes_couleurs for s in couleurs[:-1]] + [Carte(h, 'A') for h in cartes_atout], reverse = True)
-
-if __name__ == '__main__':
-    for card in card_list:
-        print(card)

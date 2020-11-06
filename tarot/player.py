@@ -5,6 +5,9 @@ def get_player(name):
         if p.name == name:
             return p
 
+def new_player(name):
+    return Player(name)
+
 class Player():
     player_list = []
 
@@ -27,20 +30,15 @@ def deal(player_list, card_list):
     while i < len(card_list):
         Player.player_list[i % len(player_list)].draw_card(card_list[i])
         i += 1
+    for player in Player.player_list:
+        player.hand.sort(reverse = True)
     if len(player_list) == 6:
         return chien[0:3], chien[3:6]
     else:
         return chien
 
-if __name__ == '__main__':
-    p1 = Player("Aaron")
-    p2 = Player("Bruno")
-    p3 = Player("Clara")
-    p4 = Player("Danny")
-    p5 = Player("Eliot")
-
-    card_list = list(range(78))
-    chien = deal(Player.player_list, card_list)
-    for p in Player.player_list:
-        print(p.name, ":", p.hand)
-    print("chien :", chien)
+def print_hands():
+    for player in Player.player_list:
+        print(player.name)
+        for card in player.hand:
+            print(f"    {str(card)}")
