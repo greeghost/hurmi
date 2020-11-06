@@ -42,7 +42,7 @@ class Carte():
             return .5
 
     def __lt__(self, other):
-        suits = 'TKCPA'
+        suits = 'KTCPA'
         if suits.index(self.suit) < suits.index(other.suit):
             return True
         if suits.index(self.suit) > suits.index(other.suit):
@@ -64,6 +64,8 @@ class Carte():
                 return 'Vingt et un'
         if self.suit == 'A':
             return f"{self.height} d'Atout"
-        return f"{height_to_string(self.height)} de {color_to_string(self.suit)}"
+        if self.suit in "PT":
+            return f"\033[100m{height_to_string(self.height)} de {color_to_string(self.suit)}\033[0m"
+        return f"\033[101m{height_to_string(self.height)} de {color_to_string(self.suit)}\033[0m"
 
 card_list = sorted([Carte(h, s) for h in cartes_couleurs for s in couleurs[:-1]] + [Carte(h, 'A') for h in cartes_atout], reverse = True)
