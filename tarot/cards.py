@@ -27,6 +27,21 @@ def color_to_string(c):
 
 class Carte():
     def __init__(self, height, suit):
+
+        if suit != 'A' and isinstance(height, str):
+            already_updated = 0
+            hr = height
+            if height in 'KR':
+                hr, already_updated = 14, 1
+            if height in 'QD':
+                hr, already_updated = 13, 1
+            if height == 'C':
+                hr, already_updated = 12, 1
+            if height in 'JV':
+                hr, already_updated = 11, 1
+            height = hr if already_updated else int(hr)
+        elif isinstance(height, str):
+            height = int(height)
         assert ((suit == 'A') and (height in cartes_atout)) or ((suit in couleurs[:-1]) and height in cartes_couleurs), "Invalid Combination"
 
         self.height = height
