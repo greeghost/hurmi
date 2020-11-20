@@ -1,10 +1,5 @@
 from random import shuffle
 
-def get_player(name):
-    for p in Player.player_list:
-        if p.name == name:
-            return p
-
 def new_player(name):
     return Player(name)
 
@@ -18,6 +13,10 @@ class Player():
 
     def draw_card(self, card):
         self.hand.append(card)
+
+    def __str__(self):
+        return self.name
+
 
 def deal(player_list, card_list):
     shuffle(card_list)
@@ -36,6 +35,7 @@ def deal(player_list, card_list):
         return chien[0:3], chien[3:6]
     else:
         return chien
+
 
 def print_hands():
     for player in Player.player_list:
